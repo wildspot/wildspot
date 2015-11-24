@@ -1,0 +1,11 @@
+sudo: required
+language: node_js
+
+install:
+ - curl https://install.meteor.com/ | sh
+
+script:
+ - meteor build
+
+deploy:
+ - echo "DEPLOY!"
