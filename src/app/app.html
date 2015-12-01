@@ -1,14 +1,15 @@
 <head>
-  <title>app</title>
+  <title>WildSpot</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
 
-  {{> hello}}
+<img src="https://s3.amazonaws.com/upload.uxpin/files/369728/373566/uxpmod_8638215_3046690071_Presentatie_concept.png?1446141722538" id="homepageImage"/>
+{{> loginButtons}}
+
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}}duizend times.</p>
+<template name="loginButtons">
+  <input type="image" src="http://i.imgur.com/Q2J9sXB.png" id="facebookLoginButton"/>
+  <input type="image" src="http://i.imgur.com/444VV0Z.png" id="emailLoginButton"/>
 </template>

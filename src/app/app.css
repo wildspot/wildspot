@@ -1,1 +1,32 @@
-/* CSS declarations go here */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100px;
+}
+
+#homepageImage {
+    width: 100vw;
+    height: auto;
+    margin-top: 2vh;
+}
+
+#facebookLoginButton {
+    width: 90vw;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5vh;
+}
+
+#emailLoginButton {
+    width: 90vw;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3vh;
+}
