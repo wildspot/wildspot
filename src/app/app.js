@@ -31,12 +31,14 @@ if (Meteor.isClient) {
     });
 
     Template.Kaart.helpers({
-        exampleMapOptions: function() {
+        mapOptions: function() {
             // Make sure the maps API has loaded
-            if (GoogleMaps.loaded()) {
+            var location = Geolocation.latLng();
+            if (GoogleMaps.loaded() && location) {
                 // Map initialization options
+
                 return {
-                    center: new google.maps.LatLng(51.917319, 4.484818),
+                    center: new google.maps.LatLng(location.lat, location.lng),
                     zoom: 16
                 };
             }
@@ -46,9 +48,15 @@ if (Meteor.isClient) {
     Template.Kaart.onCreated(function() {
         // We can use the `ready` callback to interact with the map API once the map is ready.
         GoogleMaps.ready('SpotsMap', function(map) {
+            Spots.find().forEach(function(spot){
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(spot.place.lat, spot.place.lng),
+                    map: map.instance
+                });
+            });
             // Add a marker to the map once it's ready
             var marker = new google.maps.Marker({
-                position: map.options.center,
+                position: new google.maps.LatLng(51.917319, 4.484818),
                 map: map.instance
             });
         });
