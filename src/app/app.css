@@ -6,27 +6,3 @@
 html, body {
     height:100%;
 }
-
-#homepageImage {
-    width: 100vw;
-    height: auto;
-    margin-top: 2vh;
-}
-
-#facebookLoginButton {
-    width: 90vw;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5vh;
-}
-
-#emailLoginButton {
-    width: 90vw;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3vh;
-}
