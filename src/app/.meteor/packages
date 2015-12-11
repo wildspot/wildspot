@@ -21,3 +21,5 @@ insecure                # Allow all DB writes from clients (for prototyping)
 iron:router
 fezvrasta:bootstrap-material-design
 dburles:google-maps
+aldeed:collection2
+mdg:geolocation
