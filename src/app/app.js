@@ -45,6 +45,12 @@ if (Meteor.isClient) {
         }
     });
 
+    Template.Spot.events({
+        'click #add': function(){
+            Spots.insert({time: new Date(), place: Geolocation.latLng()})
+        }
+    });
+
     Template.Kaart.onCreated(function() {
         // We can use the `ready` callback to interact with the map API once the map is ready.
         GoogleMaps.ready('SpotsMap', function(map) {
