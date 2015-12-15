@@ -6,7 +6,8 @@ if(Meteor.isClient){
             if (GoogleMaps.loaded() && location) {
                 return {
                     center: new google.maps.LatLng(location.lat, location.lng),
-                    zoom: 16
+                    zoom: 16,
+                    streetViewControl: false
                 };
             }
         }
