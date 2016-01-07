@@ -1,5 +1,21 @@
 <template name="Spot">
     <main class="container text-center">
-        <button class="btn btn-primary" id="add">plaats spot</button>
+        <ul class="nav nav-pills full-width" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#automatisch" aria-controls="automatisch" role="tab" data-toggle="tab">Automatisch</a>
+            </li>
+            <li role="presentation">
+                <a href="#handmatig" aria-controls="handmatig" role="tab" data-toggle="tab">Handmatig</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="automatisch">
+                <button class="btn btn-primary" id="add">plaats spot</button>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="handmatig">
+                TODO
+            </div>
+        </div>
     </main>
 </template>

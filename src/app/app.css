@@ -10,3 +10,9 @@ html, body {
 main{
     margin-top:60px;
 }
+
+
+ul.nav-pills.full-width > li{
+    width:50%;
+    margin-left:0;
+}
