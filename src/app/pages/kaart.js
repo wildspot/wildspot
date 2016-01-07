@@ -17,7 +17,8 @@ if(Meteor.isClient){
         GoogleMaps.ready('SpotsMap', function(map) {
 
             var markers = [];
-            var spots = Spots.find();
+            var maxage = new Date(new Date() - (60*10*1000));
+            var spots = Spots.find({time: {$gt: maxage}});
             spots.forEach(function(spot){
                 markers.push(new google.maps.Marker({
                     position: new google.maps.LatLng(spot.place.lat, spot.place.lng),
