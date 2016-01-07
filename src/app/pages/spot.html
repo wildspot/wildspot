@@ -11,16 +11,16 @@
 
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="automatisch">
-                <form>
+                <form id="spot-automatisch">
                     <div class="form-group">
-                        <select class="form-control input-lg" id="animal">
+                        <select class="form-control input-lg" name="animal">
                             {{#each animals}}
                             <option value="{{@index}}">{{this}}</option>
                             {{/each}}
                         </select>
                     </div>
                     <div class="form-group">
-                        <input class="btn btn-primary form-control" type="submit" id="add" value="Spot!">
+                        <input class="btn btn-primary form-control" type="submit" value="Spot!">
                     </div>
                 </form>
 

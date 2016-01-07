@@ -16,10 +16,11 @@ ul.nav-pills.full-width > li{
     width:50%;
     margin-left:0;
 }
-
-#animal, #add{
+.form-group{
+    margin-top: 60px;
+}
+.form-group select, .form-group select:focus, .form-group input, .form-group input:focus{
     height: 70px;
     line-height: 70px;
     font-size:50px;
-    margin-top: 60px;
 }
