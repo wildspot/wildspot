@@ -1,3 +1,9 @@
+Animals = [
+    "Ree",
+    "Hert",
+    "Wild zwijn"
+];
+
 Spots = new Mongo.Collection("spots");
 Spots.attachSchema(new SimpleSchema({
     time: {
@@ -13,5 +19,11 @@ Spots.attachSchema(new SimpleSchema({
     "place.lng": {
         type: Number,
         decimal: true
+    },
+    "animal": {
+        type: Number
+    },
+    "user": {
+        type: String
     }
 }));
