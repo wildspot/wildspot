@@ -24,3 +24,14 @@ Router.route('/uitloggen', function () {
 Router.configure({
     layoutTemplate: 'Layout'
 });
+
+if(Meteor.isClient) {
+    Template.Layout.helpers({
+        routerNameClass: function (name) {
+            var r = Router.current().route;
+            if(!r) return '';
+            var n = r.getName();
+            return Router.current().route.getName() == name ? 'active' : '';
+        }
+    });
+}
