@@ -8,7 +8,8 @@ if (Meteor.isClient) {
 
     Template.Spot.events({
         'click #add': function(){
-            Spots.insert({time: new Date(), place: Geolocation.latLng()})
+            Spots.insert({time: new Date(), place: Geolocation.latLng()});
+            Router.go('');
         }
     });
 }
