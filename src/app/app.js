@@ -3,3 +3,21 @@ if (Meteor.isClient) {
         GoogleMaps.load();
     });
 }
+
+if (Meteor.isServer) {
+
+    Meteor.startup(function() {
+
+        return Meteor.methods({
+
+            removeAllPosts: function() {
+
+                return Spots.remove({});
+
+            }
+
+        });
+
+    });
+
+}
