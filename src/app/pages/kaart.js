@@ -36,17 +36,30 @@ if(Meteor.isClient){
                     position: new google.maps.LatLng(spot.place.lat, spot.place.lng),
                     animation: animation ? google.maps.Animation.DROP : null,
                     label: Animals[spot.animal],
+                    title: Animals[spot.animal],
                     opacity: (0 - new Date() + spot.time.valueOf() + 600000) / 600000
                 };
+            }
+
+            function infoWindowOptions(spot){
+                return {
+                    content: "<h1>"+Animals[spot.animal]+"</h1>" +
+                    "<p>Gespot om "+spot.time.getHours()+":"+spot.time.getMinutes()+"</p>"
+                }
             }
 
             function addMarker(spot){
                 console.log('[MAPS] Spot added:',spot);
                 var marker = {
                     spot: spot,
-                    marker: new google.maps.Marker(markerOptions(spot, true))
+                    marker: new google.maps.Marker(markerOptions(spot, true)),
+                    infowindow: new google.maps.InfoWindow(infoWindowOptions(spot))
                 };
                 marker.marker.setMap(map.instance);
+                marker.marker.addListener('click', function(){
+                    console.log("[MAP] Click detected on",marker);
+                    marker.infowindow.open(map.instance, marker.marker);
+                });
                 return markers.push(marker);
             }
 
