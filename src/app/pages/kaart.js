@@ -13,21 +13,82 @@ if(Meteor.isClient){
         }
     });
 
+    var markers;
+    var spots;
+    var initializing;
+    var observation;
+
+    function resetKaartTemplateVars(){
+        markers = [];
+        spots = Spots.find({time: {$gt: new Date(new Date() - (60*10*1000))}});
+        initializing = true;
+    }
+
     Template.Kaart.onCreated(function() {
         GoogleMaps.ready('SpotsMap', function(map) {
 
-            var markers = [];
-            var maxage = new Date(new Date() - (60*10*1000));
-            var spots = Spots.find({time: {$gt: maxage}});
-            spots.forEach(function(spot){
-                markers.push(new google.maps.Marker({
+            console.log('[MAPS] Ready');
+
+            resetKaartTemplateVars();
+
+            function markerOptions(spot, animation){
+                return {
                     position: new google.maps.LatLng(spot.place.lat, spot.place.lng),
-                    map: map.instance
-                }));
+                    animation: animation ? google.maps.Animation.DROP : null,
+                    label: Animals[spot.animal],
+                    opacity: (0 - new Date() + spot.time.valueOf() + 600000) / 600000
+                };
+            }
+
+            function addMarker(spot){
+                console.log('[MAPS] Spot added:',spot);
+                var marker = {
+                    spot: spot,
+                    marker: new google.maps.Marker(markerOptions(spot, true))
+                };
+                marker.marker.setMap(map.instance);
+                return markers.push(marker);
+            }
+
+            spots.forEach(function(spot){
+                addMarker(spot);
             });
-            Spots.find().observe(function(a,b,c){
-                console.log(a,b,c);
-            })
+            observation = spots.observe({
+                added: function(spot){
+                    if(initializing) return;
+                    addMarker(spot);
+                },
+                changed: function(spot, oldspot){
+                    console.log('[MAPS] Spot changed from', oldspot, 'to', spot);
+                    for(var i = markers.length - 1; i >= 0; i--) {
+                        if(markers[i].spot === oldspot) {
+                            markers[i].spot = spot;
+                            markers[i].marker.setOptions(markerOptions(spot));
+                        }
+                    }
+                },
+                removed: function(oldspot){
+                    console.log('[MAPS] Spot removed:', oldspot);
+                    for(var i = markers.length - 1; i >= 0; i--) {
+                        if(markers[i].spot === oldspot) {
+                            markers[i].marker.setMap(null);
+                            markers.splice(i, 1);
+                        }
+                    }
+                }
+            });
+            initializing = false;
+
+            setInterval(function(){
+                for(var i = markers.length - 1; i >= 0; i--) {
+                    markers[i].marker.setOptions(markerOptions(markers[i].spot));
+                }
+            },10000);
         });
+    });
+
+    Template.Kaart.onDestroyed(function(){
+        console.log("[MAPS] Destroyed");
+        observation.stop();
     });
 }
