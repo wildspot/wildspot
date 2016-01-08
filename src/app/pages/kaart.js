@@ -35,7 +35,6 @@ if(Meteor.isClient){
                 return {
                     position: new google.maps.LatLng(spot.place.lat, spot.place.lng),
                     animation: animation ? google.maps.Animation.DROP : null,
-                    label: Animals[spot.animal],
                     title: Animals[spot.animal],
                     opacity: (0 - new Date() + spot.time.valueOf() + 600000) / 600000,
                     icon: {
