@@ -37,7 +37,11 @@ if(Meteor.isClient){
                     animation: animation ? google.maps.Animation.DROP : null,
                     label: Animals[spot.animal],
                     title: Animals[spot.animal],
-                    opacity: (0 - new Date() + spot.time.valueOf() + 600000) / 600000
+                    opacity: (0 - new Date() + spot.time.valueOf() + 600000) / 600000,
+                    icon: {
+                        url: "/images/animals/"+spot.animal+".png",
+                        scaledSize: new google.maps.Size(50,50)
+                    }
                 };
             }
 
@@ -96,7 +100,7 @@ if(Meteor.isClient){
                 for(var i = markers.length - 1; i >= 0; i--) {
                     markers[i].marker.setOptions(markerOptions(markers[i].spot));
                 }
-            },10000);
+            },3000);
         });
     });
 
