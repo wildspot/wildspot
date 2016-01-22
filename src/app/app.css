@@ -24,3 +24,17 @@ ul.nav-pills.full-width > li{
     line-height: 70px;
     font-size:50px;
 }
+
+.rightButton {
+    position: absolute;
+    right: 50px;
+    bottom: 24px;
+}
+
+.rightButton span {
+    font-size: 60px;
+    left: -4px;
+    font-weight: 400;
+    position: relative;
+    top: -30px;
+}
