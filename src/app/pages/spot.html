@@ -1,34 +1,56 @@
 <template name="Spot">
     <main class="container text-center">
-        <ul class="nav nav-pills full-width" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#automatisch" aria-controls="automatisch" role="tab" data-toggle="tab">Automatisch</a>
-            </li>
-            <li role="presentation">
-                <a href="#handmatig" aria-controls="handmatig" role="tab" data-toggle="tab">Handmatig</a>
-            </li>
-        </ul>
 
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="automatisch">
-                <form id="spot-automatisch">
-                    <div class="form-group">
-                        <select class="form-control input-lg" name="animal">
-                            {{#each animals}}
-                            <option value="{{@index}}">{{this}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input class="btn btn-primary form-control" type="submit" value="Spot!">
-                    </div>
-                </form>
+        {{> SpotToggler}}
 
-
+        <form id="spot-automatisch">
+            <div class="form-group">
+                <select class="form-control input-lg" name="animal">
+                    {{#each animals}}
+                    <option value="{{@index}}">{{this}}</option>
+                    {{/each}}
+                </select>
             </div>
-            <div role="tabpanel" class="tab-pane" id="handmatig">
-                TODO
+            <div class="form-group">
+                <input class="btn btn-primary form-control" type="submit" value="Spot!">
             </div>
-        </div>
+        </form>
     </main>
+</template>
+
+<template name="SpotHandmatig">
+    <main class="container text-center">
+
+        {{> SpotToggler}}
+
+        <form id="spot-handmatig">
+            <div class="form-group">
+                <input type="time" class="form-control input-lg" name="time">
+            </div>
+            <div class="form-group">
+                <select class="form-control input-lg" name="animal">
+                    {{#each animals}}
+                        <option value="{{@index}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group" id="spotMap">
+                {{> googleMap name="SpotMap" options=mapOptions}}
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary form-control" type="submit" value="Spot!">
+            </div>
+        </form>
+    </main>
+</template>
+
+<template name="SpotToggler">
+    <ul class="nav nav-pills full-width">
+        <li role="presentation" class="{{routerNameClass 'spot'}}">
+            <a href="/spot">Automatisch</a>
+        </li>
+        <li role="presentation" class="{{routerNameClass 'spot.handmatig'}}">
+            <a href="/spot/handmatig">Handmatig</a>
+        </li>
+    </ul>
 </template>

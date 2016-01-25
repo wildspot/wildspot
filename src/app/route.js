@@ -8,6 +8,9 @@ Router.route('/', function () {
 Router.route('/spot', function () {
     this.render('Spot');
 });
+Router.route('/spot/handmatig', function () {
+    this.render('SpotHandmatig');
+});
 Router.route('/informatie', function () {
     this.render('Informatie');
 });
@@ -26,12 +29,11 @@ Router.configure({
 });
 
 if(Meteor.isClient) {
-    Template.Layout.helpers({
-        routerNameClass: function (name) {
-            var r = Router.current().route;
-            if(!r) return '';
-            var n = r.getName();
-            return Router.current().route.getName() == name ? 'active' : '';
-        }
+    Handlebars.registerHelper('routerNameClass', function (name) {
+        var r = Router.current().route;
+        if(!r) return '';
+        var n = r.getName();
+        console.log(n);
+        return Router.current().route.getName() == name ? 'active' : '';
     });
 }

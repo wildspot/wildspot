@@ -16,10 +16,10 @@ ul.nav-pills.full-width > li{
     width:50%;
     margin-left:0;
 }
-.form-group{
+#spot-automatisch .form-group{
     margin-top: 60px;
 }
-.form-group select, .form-group select:focus, .form-group input, .form-group input:focus{
+#spot-automatisch .form-group select, #spot-automatisch .form-group select:focus, #spot-automatisch .form-group input, #spot-automatisch .form-group input:focus{
     height: 70px;
     line-height: 70px;
     font-size:50px;
@@ -37,4 +37,8 @@ ul.nav-pills.full-width > li{
     font-weight: 400;
     position: relative;
     top: -30px;
+}
+
+#spotMap{
+    height:500px;
 }
