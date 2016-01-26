@@ -21,7 +21,7 @@ Router.route('/over', function () {
     this.render('Over');
 });
 Router.route('/uitloggen', function () {
-    this.render('Uitloggen');
+    this.redirect('/login');
 });
 
 Router.configure({
