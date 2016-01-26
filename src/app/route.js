@@ -33,7 +33,6 @@ if(Meteor.isClient) {
         var r = Router.current().route;
         if(!r) return '';
         var n = r.getName();
-        console.log(n);
         return Router.current().route.getName() == name ? 'active' : '';
     });
 }
