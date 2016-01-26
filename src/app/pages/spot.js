@@ -67,6 +67,24 @@ if (Meteor.isClient) {
                 url: "/images/animals/"+event.target.value+".png",
                 scaledSize: new google.maps.Size(50,50)
             });
+        },
+        'submit #spot-handmatig': function(event){
+            event.preventDefault();
+
+            var p = marker.getPosition();
+            var place = {
+                lat: p.lat(),
+                lng: p.lng()
+            };
+
+            Spots.insert({
+                time: new Date(),
+                place: place,
+                animal: event.target.animal.value,
+                user: (typeof Meteor.userId === "function") ? Meteor.userId() : "anonymous"
+            });
+
+            Router.go('/');
         }
     });
 }
