@@ -45,9 +45,28 @@ if (Meteor.isClient) {
         }
     });
 
+    var marker;
+
     Template.SpotHandmatig.onCreated(function() {
         GoogleMaps.ready('SpotMap', function(map) {
-            console.log(map);
+            marker = new google.maps.Marker({
+                position: Geolocation.latLng(),
+                map: map.instance,
+                icon: {
+                    url: "/images/animals/0.png",
+                    scaledSize: new google.maps.Size(50,50)
+                },
+                draggable: true
+            });
         });
+    });
+
+    Template.SpotHandmatig.events({
+        'change #handmatig-animal': function(event){
+            marker.setIcon({
+                url: "/images/animals/"+event.target.value+".png",
+                scaledSize: new google.maps.Size(50,50)
+            });
+        }
     });
 }
