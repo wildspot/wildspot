@@ -32,11 +32,12 @@ if(Meteor.isClient){
             resetKaartTemplateVars();
 
             function markerOptions(spot, animation){
+                var opacity = (0 - new Date() + spot.time.valueOf() + 600000) / 600000;
                 return {
                     position: new google.maps.LatLng(spot.place.lat, spot.place.lng),
                     animation: animation ? google.maps.Animation.DROP : null,
                     title: Animals[spot.animal],
-                    opacity: (0 - new Date() + spot.time.valueOf() + 600000) / 600000,
+                    opacity: opacity > 0 ? opacity : 0,
                     icon: {
                         url: "/images/animals/"+spot.animal+".png",
                         scaledSize: new google.maps.Size(50,50)
