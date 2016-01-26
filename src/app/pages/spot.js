@@ -19,6 +19,13 @@ if (Meteor.isClient) {
                     streetViewControl: false
                 };
             }
+        },
+        minuten: function(){
+            var a = ["Nu", "1 minuut geleden"];
+            for(var i = 2; i < 10; i++){
+                a.push(i+" minuten geleden");
+            }
+            return a;
         }
     });
 
