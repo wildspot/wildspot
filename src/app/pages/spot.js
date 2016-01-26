@@ -75,6 +75,9 @@ if (Meteor.isClient) {
                 scaledSize: new google.maps.Size(50,50)
             });
         },
+        'change #handmatig-time': function(event){
+            marker.setOpacity(1 - (event.target.value/10))
+        },
         'submit #spot-handmatig': function(event){
             event.preventDefault();
 
@@ -85,7 +88,7 @@ if (Meteor.isClient) {
             };
 
             Spots.insert({
-                time: new Date(),
+                time: new Date() - (event.target.time.value * 60 * 1000),
                 place: place,
                 animal: event.target.animal.value,
                 user: (typeof Meteor.userId === "function") ? Meteor.userId() : "anonymous"
